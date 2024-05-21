@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Navbar from "./navbar";
 import Register from "./register";
@@ -7,7 +7,6 @@ import SearchPanel from "./searchpanel";
 import HotelCard from "./hotelcard";
 
 import "./css/main.css";
-import { useEffect } from "react";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -28,22 +27,18 @@ const App = () => {
     navigate("/signin");
   };
 
-  // "https://academics.newtonschool.co/api/v1/bookingportals/hotel?search={"location":"mumbai, Maharastra"}"
-
   useEffect(() => {
     if (city) {
-      // \"location":{${city}}
       fetch(
-        `https://academics.newtonschool.co/api/v1/bookingportals/hotel?search={"location":"${city}"}`, 
+        `https://academics.newtonschool.co/api/v1/bookingportals/hotel?search={"location":"${city}"}`,
         {
           headers: {
-            "projectId": "tytpcwxgpttd",
+            projectId: "tytpcwxgpttd",
           },
         }
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data.data.hotels);
           setHotels(data.data.hotels);
         })
         .catch((error) => {
@@ -57,15 +52,20 @@ const App = () => {
     setCity(city);
   };
 
-  const handleSortChange = (event) => {
-    const option = event.target.value;
+  const handleSortChange = (option) => {
     setSortOption(option);
 
-    const sortedHotels = [...hotels].sort((a, b) => {
-      if (option === "rating") return b.rating - a.rating;
-      if (option === "price") return a.avgCostPerNight - b.avgCostPerNight;
-      return 0;
-    });
+    let sortedHotels = [...hotels];
+
+    if (option === "ratingHigh") {
+      sortedHotels.sort((a, b) => b.rating - a.rating);
+    } else if (option === "ratingLow") {
+      sortedHotels.sort((a, b) => a.rating - b.rating);
+    } else if (option === "priceHigh") {
+      sortedHotels.sort((a, b) => b.avgCostPerNight - a.avgCostPerNight);
+    } else if (option === "priceLow") {
+      sortedHotels.sort((a, b) => a.avgCostPerNight - b.avgCostPerNight);
+    }
 
     setHotels(sortedHotels);
   };
@@ -85,20 +85,38 @@ const App = () => {
             <div>
               <SearchPanel onCitySelect={handleCitySelect} />
               <div className="p-4">
-                <select
-                  onChange={handleSortChange}
-                  value={sortOption}
-                  className="border p-2 mb-4"
-                >
-                  <option value="">Sort By</option>
-                  <option value="rating">Rating</option>
-                  <option  onClick={handleSortChange} value="price">Price</option>
-                  
-                </select>
-                <div className="grid grid-cols-3 gap-4 p-4 grid-flow-dense ">
-                {hotels.map((hotel) => (
-                  <HotelCard key={hotel._id} hotel={hotel} />
-                ))}</div>
+                <div className="blue-background p-2 mb-4 text-white rounded-md">
+                  Sort By:
+                  <button
+                    onClick={() => handleSortChange("ratingHigh")}
+                    className={`sort-button btn ${sortOption === "ratingHigh" ? "bg-blue-700" : "bg-blue-500 hover:bg-blue-600"}`}
+                  >
+                    Rating (Highest First)
+                  </button>
+                  <button
+                    onClick={() => handleSortChange("ratingLow")}
+                    className={`sort-button btn ${sortOption === "ratingLow" ? "bg-blue-700" : "bg-blue-500 hover:bg-blue-600"}`}
+                  >
+                    Rating (Lowest First)
+                  </button>
+                  <button
+                    onClick={() => handleSortChange("priceHigh")}
+                    className={`sort-button btn ${sortOption === "priceHigh" ? "bg-blue-700" : "bg-blue-500 hover:bg-blue-600"}`}
+                  >
+                    Price (Highest First)
+                  </button>
+                  <button
+                    onClick={() => handleSortChange("priceLow")}
+                    className={`sort-button btn ${sortOption === "priceLow" ? "bg-blue-700" : "bg-blue-500 hover:bg-blue-600"}`}
+                  >
+                    Price (Lowest First)
+                  </button>
+                </div>
+                <div className="grid grid-cols-3 gap-4 p-4 grid-flow-dense">
+                  {hotels.map((hotel) => (
+                    <HotelCard key={hotel._id} hotel={hotel} />
+                  ))}
+                </div>
               </div>
             </div>
           }

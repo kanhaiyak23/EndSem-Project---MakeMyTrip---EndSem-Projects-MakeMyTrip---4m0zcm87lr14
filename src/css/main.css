@@ -675,6 +675,24 @@ video {
   background-color: #dff0f9;
   
 }
+/* main.css */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.blue-background {
+  background-color: #8ed4f8; /* Tailwind's blue-900 */
+}
+
+.sort-button {
+  margin-right: 25px; /* Adjust the margin as needed */
+}
+.sorting-text{
+  color: #555657;
+}
+.colour-sort{
+  background-color: #dff1fb;
+}
 .gradient-bg-tb {
   background: linear-gradient(to bottom, #071828, #163f6d);
 }

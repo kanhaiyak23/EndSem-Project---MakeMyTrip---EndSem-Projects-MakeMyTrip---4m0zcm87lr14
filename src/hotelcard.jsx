@@ -2,7 +2,7 @@ import React from 'react';
 
 const HotelCard = ({ hotel }) => {
   console.log(hotel);
-  let a=Math.round(hotel.avgCostPerNight,0);
+  const roundedCost = Math.round(hotel.avgCostPerNight);
 
   const ratingWord = (rating) => {
     if (rating >= 0 && rating < 1) return 'Poor';
@@ -14,30 +14,24 @@ const HotelCard = ({ hotel }) => {
   };
 
   return (
-    <div className="border p-4 mb-2 flex">
+    <div className="border p-4 mb-4 flex flex-col md:flex-row md:space-x-4">
       <div className="flex-1 p-2">
-       <div>
-      <img src={hotel.images[0]} alt={hotel.name} className=" w-full h-20 object-cover" />
-      </div>
-        <div className="grid grid-cols-2 gap-2 p-2">
+        <div className="mb-2">
+          <img src={hotel.images[0]} alt={hotel.name} className="w-full h-40 md:h-60 object-cover rounded-lg" />
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
           {hotel.images.slice(1, 5).map((img, index) => (
-            <img key={index} src={img} alt={`${hotel.name}-${index}`} className="w-full h-20 object-cover mb-1" />
+            <img key={index} src={img} alt={`${hotel.name}-${index}`} className="w-full h-20 object-cover rounded-lg" />
           ))}
-          {/* <div>{hotel.location}</div> */}
-
-          
         </div>
       </div>
-      <div className="ml-4">
-        <h3 className="text-xl font-bold color text-blue-500">{hotel.name}</h3>
-        <p>{hotel.city}</p>
-        <p className="text-blue-500 bg-blue-100">{ratingWord(hotel.rating)} {hotel.rating}</p>
-        {/* <p>{hotel.price}</p> */}
-        <p>{hotel.amenities}</p>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded">Book Now</button>
-          
-          
-          <p>Price:{a}</p>
+      <div className="flex-1 mt-4 md:mt-0">
+        <h3 className="text-xl font-bold text-blue-500">{hotel.name}</h3>
+        <p className="text-gray-600">{hotel.city}</p>
+        <p className="text-blue-500 bg-blue-100 p-1 rounded-md inline-block">{ratingWord(hotel.rating)} ({hotel.rating})</p>
+        <p className="text-gray-700 mt-2">{hotel.amenities.join(', ')}</p>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded mt-4">Book Now</button>
+        <p className="text-lg font-semibold mt-2">Price: ${roundedCost}</p>
       </div>
     </div>
   );
