@@ -8,3 +8,13 @@ module.exports = {
   },
   plugins: [],
 }
+module.exports = {
+  theme: {
+    extend: {
+      backgroundImage: theme => ({
+        'dark-blue-gradient': 'linear-gradient(to right, #1e3a8a, #1e40af, #1e429f)',
+      }),
+    },
+  },
+  plugins: [],
+};

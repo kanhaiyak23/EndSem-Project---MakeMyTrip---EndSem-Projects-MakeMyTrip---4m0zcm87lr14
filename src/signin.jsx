@@ -28,11 +28,11 @@ const SignIn = ({ onSignIn }) => {
 
   return (
     
-    <div className="flex justify-center   bg-white-100 min-h-screen">
+    <div className="flex bg-green-200 justify-center    min-h-screen    ">
       
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md">
+      <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md ">
       
-        <h2 className="text-2xl mb-4">Sign In</h2>
+        <h2 className="text-2xl mb-4 text-center">Sign In</h2>
         <label
             htmlFor="name"
             className="block text-sm font-bold text-gray-700 mb-2  "

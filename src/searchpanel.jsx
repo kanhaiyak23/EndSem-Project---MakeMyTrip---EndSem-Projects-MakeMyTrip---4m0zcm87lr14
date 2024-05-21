@@ -6,7 +6,7 @@ const SearchPanel = ({ onCitySelect }) => {
 
   useEffect(() => {
     const fetchCities = async () => {
-      const response = await fetch('https://academics.newtonschool.co/api/v1/bookingportals/city?limit=40', {
+      const response = await fetch('https://academics.newtonschool.co/api/v1/bookingportals/city?limit=50', {
         headers: {
           'projectId': 'tytpcwxgpttd',
         },
@@ -25,7 +25,7 @@ const SearchPanel = ({ onCitySelect }) => {
 
   return (
    
-    <div className="bg-blue-500 flex justify-center h-32 w-68 ">
+    <div className="bg-blue-500 flex justify-center   gradient-bg-tb">
       <select onChange={handleSelect} value={selectedCity} className="border p-2 color-blue text-blue-500">
         <option value="">Select a city</option>
         {cities.map((city) => (

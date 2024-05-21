@@ -14,26 +14,28 @@ const HotelCard = ({ hotel }) => {
   };
 
   return (
-    <div className="border p-4 mb-4 flex">
-      <div className="flex-1">
-        <img src={""} alt={hotel.name} className="w-full h-40 object-cover mb-2" />
-        <div className="grid grid-cols-2 gap-2">
+    <div className="border p-4 mb-2 flex">
+      <div className="flex-1 p-2">
+       <div>
+      <img src={hotel.images[0]} alt={hotel.name} className=" w-full h-20 object-cover" />
+      </div>
+        <div className="grid grid-cols-2 gap-2 p-2">
           {hotel.images.slice(1, 5).map((img, index) => (
-            <img key={index} src={img} alt={`${hotel.name}-${index}`} className="w-full h-20 object-cover" />
+            <img key={index} src={img} alt={`${hotel.name}-${index}`} className="w-full h-20 object-cover mb-1" />
           ))}
-          <div>{hotel.location}</div>
+          {/* <div>{hotel.location}</div> */}
 
           
         </div>
       </div>
       <div className="ml-4">
-        <h3 className="text-xl font-bold">{hotel.name}</h3>
+        <h3 className="text-xl font-bold color text-blue-500">{hotel.name}</h3>
         <p>{hotel.city}</p>
-        <p>{ratingWord(hotel.rating)}</p>
+        <p className="text-blue-500 bg-blue-100">{ratingWord(hotel.rating)} {hotel.rating}</p>
         {/* <p>{hotel.price}</p> */}
         <p>{hotel.amenities}</p>
         <button className="bg-blue-500 text-white px-4 py-2 rounded">Book Now</button>
-          <p>Rating:{hotel.rating}</p>
+          
           
           <p>Price:{a}</p>
       </div>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 // { isAuthenticated, onLogout }
 const Navbar = ({ isAuthenticated, onLogout }) => {
   return (
+    <div className="bg-green-200">
     <nav className="bg-blue-1000 p-4 text-white flex justify-between items-center">
       <div>
         <Link to="/" className="text-2xl font-bold"><img src="https://upload.wikimedia.org/wikipedia/commons/6/61/Makemytrip_logo.svg" alt="Make My Trip" class="h-12"/></Link>
@@ -16,6 +17,7 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
         )}
       </div>
     </nav>
+    </div>
   );
 };
 
