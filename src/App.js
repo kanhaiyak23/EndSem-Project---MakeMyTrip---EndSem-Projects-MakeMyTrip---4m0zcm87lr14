@@ -15,7 +15,15 @@ const App = () => {
   const [hotels, setHotels] = useState([]);
   const [sortOption, setSortOption] = useState("");
   const navigate = useNavigate();
+  const [comment,setcomments]=useState([]);
+  const [newcomments,setnewcomments]=useState("")
 
+  const handlecommentbtn = () => {
+    if (newcomments.trim()!== ""){
+    setcomments([...comment, newcomments]);
+    setnewcomments("")
+  }
+};
   const handleSignIn = (token) => {
     setIsAuthenticated(true);
     setToken(token);
@@ -117,6 +125,7 @@ const App = () => {
                     <HotelCard key={hotel._id} hotel={hotel} />
                   ))}
                 </div>
+
               </div>
             </div>
           }

@@ -32,11 +32,13 @@ const Register = ({ onRegister }) => {
       }
     );
     const data = await response.json();
+    console.log(data);
     if (data.status === "success") {
+      
       alert("User registered successfully");
       onRegister();
     } else {
-      alert("Registration failed");
+      alert("User already existed");
     }
   };
 

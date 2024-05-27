@@ -1,9 +1,18 @@
 import React from 'react';
-
+import { useState } from 'react';
 const HotelCard = ({ hotel }) => {
   console.log(hotel);
-  const roundedCost = Math.round(hotel.avgCostPerNight);
-
+  // const roundedCost = Math.round(hotel.avgCostPerNight);
+// const [sortedgymhotel,setgymhotel]  =useState([])
+// const gymhotel=()=>{
+//   console.log(hotel.amenities)
+//   hotel.filter(()=>{
+//     if (hotel.amenities.includes("Gym")){
+//       return sortedgymhotel.push(hotel)
+//   }
+//   setgymhotel(hotel)
+//   })
+// }
   const ratingWord = (rating) => {
     if (rating >= 0 && rating < 1) return 'Poor';
     if (rating >= 1 && rating < 2) return 'Fair';
@@ -30,8 +39,16 @@ const HotelCard = ({ hotel }) => {
         <p className="text-gray-600">{hotel.city}</p>
         <p className="text-blue-500 bg-blue-100 p-1 rounded-md inline-block">{ratingWord(hotel.rating)} ({hotel.rating})</p>
         <p className="text-gray-700 mt-2">{hotel.amenities.join(', ')}</p>
+        
+        {/* <button className='text-blue-500' onClick={gymhotel}  >Gym</button> */}
+        
+
+        {/* <p className="text-gray-700 mt-2">Gym: {hotel.amenities===("gym") ? 'Yes' : 'No'}</p>
         <button className="bg-blue-500 text-white px-4 py-2 rounded mt-4">Book Now</button>
         <p className="text-lg font-semibold mt-2">Price: ${roundedCost}</p>
+        //for hotel in which gym is located */}
+        
+
       </div>
     </div>
   );
